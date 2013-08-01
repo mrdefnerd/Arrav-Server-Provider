@@ -102,5 +102,14 @@ public final class GroundItem implements Locatable {
 		return (int) Calculations.distanceTo(getLocation());
 	}
 	
+	/**
+	 * {@inheritDoc}
+	 */
+	public final boolean interact(String action) {
+		final Model model = getModel();
+		final Point a = (model == null) ? getCenterPointOnScreen() : model.getCentralPoint();
+		Menu.interact(action, a);
+		return Game.getCrosshairType() == Game.CROSSHAIR_TYPE_RED;
+	}
 
 }
