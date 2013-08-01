@@ -223,4 +223,14 @@ public class Character implements Locatable {
 		g.setColor(Color.white);
 		g.drawString(getName(), p.x + 5, p.y - 2);
 	}
+	
+	/**
+	 * {@inheritDoc}
+	 */
+	public final boolean interact(String action) {
+		final Model model = getModel();
+		final Point a = (model == null) ? getCenterPointOnScreen() : model.getCentralPoint();
+		Menu.interact(action, a);
+		return Game.getCrosshairType() == Game.CROSSHAIR_TYPE_RED;
+	}
 }
